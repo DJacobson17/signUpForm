@@ -21,22 +21,63 @@
         </div>
         <div class="formArea">
             <header>
-                <p>This is not a real online service! If it was, I would never forget your salads.</p>
+                <h2>THIS IS NOT A REAL ONLINE SERVICE! IF IT WAS, I WOULD NEVER FORGET YOUR SALADS! SIGN UP NOW TO NEVER MISS A SALAD AGAIN!</h2>
+                <h2>YOU <em>KNOW</em> YOU WANT TO.</h2>
             </header>
-            <form action="" id="form">
                 <div class="info">
-                    <h1>Let's do this!</h1>
-                    <div class="name"></div>
-                    <div class="email"></div>
-                    <div class="phoneNumber"></div>
-                    <div class="password"></div>
+                    <p class="doit">Let's do this!</p>
+                    <form action="" id="form">
+                        <label for="firstName">FIRST NAME
+                            <input type="text" id="firstName" name="firstName" required>
+                        </label>
+                        <label for="lastName">LAST NAME
+                            <input type="text" id="lastName" name="lastName" required>
+                        </label>
+                        <label for="mail">EMAIL
+                            <input type="email" id="mail" name="mail" required>
+                        </label>
+                        <label for="phone">PHONE NUMBER
+                            <input type="tel" name="phone" id="phone" >
+                        </label>
+                        <label for="pwd">PASSWORD
+                            <input type="password" name="pwd" id="pwd" pattern="/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/" required>
+                            <div id="pwd-error" class="error"></div>
+                        </label>
+                        <label for="confirmPwd">CONFIRM PASSWORD
+                            <input type="password" name="confirmPwd" id="confirmPwd" required>
+                            <div id="cpwd-error" class="error"></div>
+                        </label>
+                    </form>
                 </div>
                 <div class="login">
-                    <button type="submit">Create Account</button>
+                    <button type="submit" form="form">Create Account</button>
                     <p>Aleady have an account? <a href="">Log in</a></p>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        const pw = document.querySelector('#pwd');
+        const cpw = document.querySelector('#confirmPwd');
+        const pwError = document.querySelector('#pwd-error');
+        const cpwError = document.querySelector('#cpwd-error');
+
+        pw.addEventListener("input", function (event) {
+            if (pw.validity.patternMismatch) {
+                pwError.textContent = "Your password must have at least 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long"
+
+            } else {
+                pwError.textContent = ""
+            }
+        })
+
+        cpw.addEventListener("input", function (event) {
+            if (pw.value !== cpw.value) {
+                cpwError.textContent = "Your passwords do not match"
+            } else {
+                cpwError.textContent = ""
+            }
+        })
+    </script>
 </body>
 </html>
